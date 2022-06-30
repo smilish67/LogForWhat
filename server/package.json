@@ -1,0 +1,53 @@
+{
+  "name": "logforwhat",
+  "version": "0.0.1",
+  "description": "Reward Survey",
+  "main": "app.js",
+  "bin": {
+    "logforwhat": "www.js"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "node ./bin/www.js",
+    "start:dev": "nodemon ./bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smilish67/LogForWhat.git"
+  },
+  "keywords": [
+    "LogForWhat"
+  ],
+  "author": "UnknownPlayerZ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smilish67/LogForWhat/issues"
+  },
+  "homepage": "https://github.com/smilish67/LogForWhat#readme",
+  "dependencies": {
+    "@pinata/sdk": "^1.1.25",
+    "@project-serum/anchor": "^0.24.2",
+    "@solana/spl-token": "^0.2.0",
+    "@solana/wallet-adapter-wallets": "^0.16.1",
+    "@solana/web3.js": "^1.42.0",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "bn.js": "^5.2.0",
+    "body-parser": "^1.20.0",
+    "browserify": "^17.0.0",
+    "bs58": "^5.0.0",
+    "chai": "^4.3.6",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "form-data": "^4.0.0",
+    "ipfs-api": "^17.5.0",
+    "json-2-csv": "^3.17.1",
+    "mysql": "^2.18.1",
+    "openpgp": "^5.2.1",
+    "ts-node": "^10.8.1",
+    "uuid": "^8.3.2"
+  }
+}

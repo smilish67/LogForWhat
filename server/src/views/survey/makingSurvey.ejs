@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 설문지 생성</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/survey/makingSurvey.css">
+    <link rel="stylesheet" type="text/css" href="/css/survey/surveyFrame.css">
+    <script src="/js/survey/makeSurvey.js" defer></script>
+
+    <script>
+        const {clusterApiUrl, Connection, PublicKey} = solanaWeb3;
+
+        (async () => {
+            parent.showSpinner();
+            let connection = new Connection(clusterApiUrl('devnet'));
+            const upzBal = await connection.getTokenAccountBalance(new PublicKey("<%=ata%>"));
+            const upz = document.querySelector("#upz");
+            upzBalance = (upzBal.value.amount/(10**upzBal.value.decimals)).toFixed(3);
+            upz.innerHTML = (upzBal.value.amount/(10**upzBal.value.decimals)).toFixed(3);
+            parent.hideSpinner();
+        })();
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <h1>설문지 작성</h1>
+    </div>
+
+    <div id="survey">
+        <table cellspacing="10px">
+            <tr>
+                <td>
+                    <p>설문제목</p>
+                </td>
+                <td>
+                    <input id="surveyTitle" name="surveyTitle" type="text" placeholder="설문제목을 입력하세요.">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>설문 의뢰인</p>
+                </td>
+                <td>
+                    <span><%=pk%></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>응답 대상 인원</p>
+                </td>
+                <td>
+                    <input id="numOfAnswerer" name="numOfAnswerer" type="number" placeholder="0"> 명
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>추가 설명</p>
+                </td>
+            </tr>
+        </table>
+        <textarea id="addInfo" name="addInfo" placeholder="설문에 관한 설명을 작성해주세요."></textarea>
+    </div>
+
+    <hr>
+
+    <div id="surveyData">
+        <h1>문항 관리</h1>
+        <div id="questionList">
+            <div class="subjective">
+
+            </div>
+        </div>
+        <div id="questionAdder">
+            <div id="subjectiveAdder">
+                <h3>주관식 문항</h3>
+                <br>
+                <table cellspacing="10px">
+                    <tr>
+                        <td>문항명</td>
+                        <td>
+                            <input id="subjectiveTitle" type="text" placeholder="질문 내용을 입력해주세요.">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>응답 글자 수 제한</td>
+                        <td>
+                            <input id="subjectiveMax" type="number" placeholder="0"> 자
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <button id="subjectiveAddBtn">문항 추가</button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="contractSection">
+        <h1>스마트 설문 계약</h1>
+        <div id="description">
+            <p>
+                저희 시스템이 제공하는 스마트 설문 계약은 서명과 동시에 블록체인 네트워크로 배포됩니다. 설문 계약 비용은 스마트 컨트랙트로 안전하게 담보되며, 설문 응답자의 응답과 동시에 정해진 금액만큼 이전됩니다.
+            </p>
+        </div>
+        <div id="contractContent">
+            <table cellspacing="20px">
+                <tr>
+                    <td>
+                        <p>보유 토큰</p>
+                    </td>
+                    <td>
+                        <span id="upz">0</span>
+                    </td>
+                    <td>
+                        UPZ
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>필요 토큰</p>
+                    </td>
+                    <td>
+                        <span id="needTokenAmount">0</span>
+                    </td>
+                    <td>
+                        UPZ
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>서명 (Secret Key)</p>
+                    </td>
+                    <td>
+                        <input type="password" id="secretKey">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="margin-top: 50px">
+            <label for="tradable">
+                <p>설문 NFT 발행 및 거래에 동의하십니까? (30% 할인) <input type="checkbox" id="tradable"></p>
+            </label>
+        </div>
+        <button id="enrollSurveyBtn">설문 등록</button>
+    </div>
+</div>
+</body>
+</html>

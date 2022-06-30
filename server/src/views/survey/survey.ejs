@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 설문 응답</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/survey/survey.css">
+    <link rel="stylesheet" type="text/css" href="/css/survey/surveyFrame.css">
+    <script src="/js/survey/survey.js" defer></script>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <hr>
+        <h1><%= surveyInfo.surveyTitle %></h1>
+        <hr>
+        <div id="description">
+            <spanp>
+                <%= surveyInfo.addInfo %>
+            </spanp>
+        </div>
+        <div id="survey">
+            <% data.forEach((item) => { %>
+                <% if(item.questionType === 0) { %>
+                    <div class="question">
+                        <span><%= item.questionNum %>. <%= item.questionTitle %></span>
+                    </div>
+                    <div class="answer">
+                        <textarea id="<%= item.questionNum %>" placeholder="답변을 입력해주세요. 최대 <%= item.maxLenAns %>글자"></textarea>
+                    </div>
+                <% } %>
+            <%});%>
+        </div>
+        <p style="display: inline-block">서명 (Secret Key)</p>
+        <input type="password" id="secretKey"><br><br>
+        <button id="enrollSurveyBtn" onclick="submitSurvey(<%=surveyInfo.questionCnt%>, '<%=surveyInfo.surveyId%>', '<%=surveyInfo.escrowAddress%>', '<%=surveyInfo.publisherATA%>', '<%=surveyInfo.publisher%>')">제출</button>
+    </div>
+</div>
+</body>
+</html>

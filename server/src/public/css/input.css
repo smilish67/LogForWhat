@@ -1,0 +1,18 @@
+input {
+    width: 400px;
+    font-size: 16px;
+    height: 10px;
+    padding: 10px;
+}
+
+textarea {
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 990px;
+    height: 120px;
+}
+
+button {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}

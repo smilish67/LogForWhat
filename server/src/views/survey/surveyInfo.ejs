@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 설문 정보</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/survey/surveyInfo.css">
+    <link rel="stylesheet" type="text/css" href="/css/survey/surveyFrame.css">
+    <script src="/js/survey/surveyInfo.js" defer></script>
+    <%if(data.publisher === pk && data.maxAnswerer=== data.curAnswerCnt) {%>
+        <script>
+            function finishSurvey() {
+                parent.showSpinner();
+                let jsonObject = new Object();
+                jsonObject.surveyId = '<%=data.surveyId%>';
+                jsonObject.escrowAddress = '<%=data.escrowAddress%>';
+
+                fetch("/api/survey/finish", {
+                    method : "POST",
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+                    body : JSON.stringify(jsonObject)
+                }).then((res)=>res.json())
+                    .then((res)=>{
+                        if(res.success){
+                            parent.hideSpinner();
+                            alert("정상적으로 등록되었습니다.");
+                            parent.changeAddress("/createNFT?id=<%=data.surveyId%>", '1050', '680');
+                        } else {
+                            parent.hideSpinner();
+                            return alert(res.msg);
+                        }
+                    })
+                    .catch((err) => {
+                        parent.hideSpinner();
+                        console.error(new Error("에러발생"), err);
+                        alert("오류가 발생했습니다. 회사측에 연락주세요.")
+                    });
+            }
+        </script>
+    <%}%>
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <h1>설문 정보</h1>
+        <div id="surveyInfo">
+            <div class="key">
+                <p>스마트계약</p>
+            </div>
+            <div class="value">
+                <span onclick="window.open('https://explorer.solana.com/address/<%=data.escrowAddress%>/anchor-account?cluster=devnet')" id="escrow">
+                    <%=data.escrowAddress%>
+                </span>
+            </div>
+            <div class="key">
+                <p>제목</p>
+            </div>
+            <div class="value">
+                <span><%=data.surveyTitle%></span>
+            </div>
+            <div class="key">
+                <p>발행인</p>
+            </div>
+            <div class="value">
+                <span><%=data.publisher%></span>
+            </div>
+            <div class="key">
+                <p>응답인원</p>
+            </div>
+            <div class="value">
+                <span><%=data.curAnswerCnt%>/<%=data.maxAnswerer%> 명</span>
+            </div>
+            <div class="key" style="grid-column: span 2">
+                <p>설명</p>
+            </div>
+            <div class="value" style="grid-column: span 2; border: 1px solid black; height: 120px; padding-left: 10px; padding-top:10px; overflow: scroll">
+                <span><%=data.addInfo%></span>
+            </div>
+            <div id="reward">
+                <div style="text-align: right">
+                    <p>보상</p>
+                </div>
+                <div style="text-align: left">
+                    <span style="color: navy"><%=data.reward%></span> UPZ
+                </div>
+                <div style="text-align: right">
+                    <p>인센티브</p>
+                </div>
+                <div style="text-align: left">
+                    <span style="color: navy"><%=data.incentive%></span> UPZ
+                </div>
+                <div style="grid-column: span 2; text-align: center;">
+                    <p style="font-size: 14px;">인센티브란, 고객님이 참여한 설문 데이터 NFT가 거래될 때마다, 받는 보상을 뜻합니다.</p>
+                </div>
+            </div>
+            <div id="btn">
+                <%if(data.curAnswerCnt!==data.maxAnswerer) {%>
+                    <button onclick="parent.changeAddress('/getSurvey?id=<%=data.surveyId%>', '1000', '850')">설문 참여하기</button>
+                <%} else if(data.publisher === pk && data.maxAnswerer=== data.curAnswerCnt && data.isFinished===0) {%>
+                    <button onclick="finishSurvey()" style="background-color: red">설문 종료</button>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+button {
+    font-size: 20px;
+    width: 180px;
+    height: 35px;
+    background-color: #AFAFAF;
+    border-radius: 10px;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #8F8F8F;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #DFDFDF;
+}

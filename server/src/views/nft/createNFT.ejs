@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : NFT 등록</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/input.css">
+    <link rel="stylesheet" type="text/css" href="/css/modalFrame.css">
+    <script src="/js/nft/createNFT.js" defer></script>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <h1>NFT 등록</h1>
+        <div id="info">
+            <div class="key">
+                <p>토큰이름</p>
+            </div>
+            <div class="value">
+                <input type="text" placeholder="영문, 20자 이내" id="tokenName">
+            </div>
+            <div class="key">
+                <p>발행인</p>
+            </div>
+            <div class="value">
+                <span><%=data.publisher%></span>
+            </div>
+            <div class="key">
+                <p>가격</p>
+            </div>
+            <div class="value">
+                <input type="number" id="price" placeholder="NFT의 가격을 입력하세요. (단위 UPZ)">
+            </div>
+            <div class="key" style="grid-column: span 2">
+                <p>설명</p>
+            </div>
+            <textarea id="description"></textarea>
+            <div id="btn">
+                <div id="sign">
+                    <p>서명 (Secret Key)</p>
+                    <input type="password" id="secretKey" placeholder="비밀키를 입력하세요.">
+                </div>
+                <button onclick="createNFT('<%=data.surveyId%>','<%=pk%>')">NFT 등록</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

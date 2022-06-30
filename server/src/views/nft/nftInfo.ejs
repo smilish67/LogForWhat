@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : NFT 정보</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/nft/nftInfo.css">
+    <link rel="stylesheet" type="text/css" href="/css/survey/surveyFrame.css">
+    <script src="/js/nft/buyNFT.js" defer></script>
+    <script>
+        const {clusterApiUrl, Connection, PublicKey} = solanaWeb3;
+
+        (async () => {
+            parent.showSpinner();
+            let connection = new Connection(clusterApiUrl('devnet'));
+            const data = await connection.getTokenLargestAccounts(new PublicKey("<%=data.tokenAddress%>"));
+            const owner = document.querySelector("#owner");
+            owner.innerHTML = data.value[0].address.toBase58();
+            parent.hideSpinner();
+        })();
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <h1>NFT 정보</h1>
+        <div id="nftInfo">
+            <div class="key">
+                <p>토큰상세</p>
+            </div>
+            <div class="value">
+                <span onclick="window.open('https://explorer.solana.com/address/<%=data.tokenAddress%>?cluster=devnet')" id="escrow">
+                    <%=data.tokenAddress%>
+                </span>
+            </div>
+            <div class="key">
+                <p>토큰명</p>
+            </div>
+            <div class="value">
+                <span>
+                    <%=data.tokenName%>
+                </span>
+            </div>
+            <div class="key">
+                <p>소유자</p>
+            </div>
+            <div class="value">
+                <span id="owner">
+
+                </span>
+            </div>
+            <div class="key">
+                <p>가격</p>
+            </div>
+            <div class="value">
+                <span>
+                    <%=data.price%>
+                </span>UPZ
+            </div>
+            <div class="key" style="grid-column: span 2">
+                <p>설명</p>
+            </div>
+            <div class="value" style="grid-column: span 2; border: 1px solid black; height: 120px; padding-left: 10px; padding-top:10px; overflow: scroll">
+                <%=data.tokenDescription%>
+            </div>
+            <div id="btn">
+                <div id="sign">
+                    <p>서명 (Secret Key)</p>
+                    <input type="password" id="secretKey" placeholder="비밀키를 입력하세요.">
+                </div>
+                <button onclick="buyNFT('<%=data.surveyId%>','<%=pk%>', '<%=data.tokenAddress%>', '<%=data.price%>')">NFT 구매</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

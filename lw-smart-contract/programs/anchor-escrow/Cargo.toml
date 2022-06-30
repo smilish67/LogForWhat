@@ -1,0 +1,20 @@
+[package]
+description = "Created with Anchor, Idea from anchor-escrow"
+edition = "2018"
+name = "survey_rewards"
+version = "0.3.0"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "survey_rewards"
+
+[features]
+cpi = ["no-entrypoint"]
+default = []
+no-entrypoint = []
+no-idl = []
+
+[dependencies]
+anchor-lang = "0.24.2"
+anchor-spl = {version = "0.24.2"}
+spl-token = {version = "3.3.0", features = ["no-entrypoint"]}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 로그인 화면</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/auth/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+    <script src="/js/loading.js" defer></script>
+    <script src="/js/auth/login.js" defer></script>
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <form>
+            <input type="email" id="email" placeholder="이메일" required>
+            <input type="password" id="password" placeholder="비밀번호" required>
+            <input type="button" id="submit" value="로그인">
+            <div id="other">
+                <a href="/auth/register">회원가입하기</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layerPopup">
+    <div class="spinner"></div>
+</div>
+</body>
+</html>

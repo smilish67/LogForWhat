@@ -1,0 +1,12 @@
+[programs.devnet]
+survey_rewards = "2m9zddeqaVarWy3MHk59BSTZ6xF8jeWuHZCRXvQw5Noh"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/home/upz/LogForWhat/lw-solana-wallet/my-keypair.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

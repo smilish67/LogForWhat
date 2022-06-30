@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 내 지갑</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/home/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/home/surveyInProgress.css">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+    <script src="/js/loading.js" defer></script>
+    <script src="/js/home/surveyInProgress.js" defer></script>
+    <script src="/js/home/main.js" defer></script>
+</head>
+<body>
+<div id="wrapper">
+    <span onclick="logout()" style="color: red; cursor: pointer; margin: 10px">LOGOUT</span>
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <div id="nav">
+            <div class="item" id="myWallet" onclick="window.location.href='/myWallet'">
+                <span>
+                    내 지갑
+                </span>
+            </div>
+            <div class="item" id="surveyInProgress" onclick="window.location.href='/surveyInProgress'">
+                <span>
+                    진행 중인 설문
+                </span>
+            </div>
+            <div class="item" id="surveyNFTStore" onclick="window.location.href='/surveyNFTStore'">
+                <span>
+                    설문 NFT 스토어
+                </span>
+            </div>
+        </div>
+        <div id="surveyNav">
+            <button id="makeSurveyBtn" onclick="showModal('/makeSurvey', '1000', '850')">설문 생성하기</button>
+        </div>
+        <div class="background">
+            <div class="window">
+                <div class="popup">
+                    <div style="text-align: right">
+                        <img src="/img/icon/closeBtn.png" onclick="closeModal()" style="cursor: pointer; width: 30px;">
+                    </div>
+                    <iframe src="/" id="modalIframe"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="section">
+            <%data.forEach( (item) => {%>
+                <div class="surveyComponent" onclick="showModal('/getSurveyInfo?id=<%=item.surveyId%>', '1020', '680')" style="background-color:<%if(item.isFinished===1) {%>lightgoldenrodyellow<%} else if(item.maxAnswerer === item.curAnswerCnt){%>#CCCCCC<%}%>">
+                    <div class="surveyTitle">
+                        <span><%=item.surveyTitle%></span>
+                    </div>
+                    <div class="surveyInfo">
+                        <div class="maxAnswerer">
+                            응답대상 :
+                            <span><%=item.maxAnswerer%></span> 명
+                        </div>
+                        <div class="reward">
+                            보상&nbsp;&nbsp;
+                            <span><%=item.reward%></span> UPZ
+                        </div>
+                        <div class="incentive">
+                            인센티브&nbsp;
+                            <span><%=item.incentive%></span> UPZ
+                        </div>
+                    </div>
+                </div>
+            <%});%>
+        </div>
+    </div>
+</div>
+<div class="layerPopup">
+    <div class="spinner"></div>
+</div>
+</body>
+</html>

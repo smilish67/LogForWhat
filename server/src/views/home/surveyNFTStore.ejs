@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 내 지갑</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/home/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/home/surveyNFTStore.css">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="/js/loading.js" defer></script>
+    <script src="/js/home/surveyInProgress.js" defer></script>
+    <script src="/js/home/main.js" defer></script>
+</head>
+<body>
+<div id="wrapper">
+    <div class="background">
+        <div class="window">
+            <div class="popup">
+                <div style="text-align: right">
+                    <img src="/img/icon/closeBtn.png" onclick="closeModal()" style="cursor: pointer; width: 30px;">
+                </div>
+                <iframe src="/" id="modalIframe"></iframe>
+            </div>
+        </div>
+    </div>
+    <span onclick="logout()" style="color: red; cursor: pointer; margin: 10px">LOGOUT</span>
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <div id="nav">
+            <div class="item" id="myWallet" onclick="window.location.href='/myWallet'">
+                <span>
+                    내 지갑
+                </span>
+            </div>
+            <div class="item" id="surveyInProgress" onclick="window.location.href='/surveyInProgress'">
+                <span>
+                    진행 중인 설문
+                </span>
+            </div>
+            <div class="item" id="surveyNFTStore" onclick="window.location.href='/surveyNFTStore'">
+                <span>
+                    설문 NFT 스토어
+                </span>
+            </div>
+        </div>
+        <div id="section">
+            <%data.forEach( (item) => {%>
+            <div class="nftComponent" onclick="showModal('/getNFTInfo?id=<%=item.surveyId%>', '1020', '580')">
+                <div class="nftImage">
+                    <img src="/img/logo/logo.png">
+                </div>
+                <div class="nftTitle">
+                    <span><%=item.tokenName%></span>
+                </div>
+            </div>
+            <%});%>
+        </div>
+    </div>
+</div>
+<div class="layerPopup">
+    <div class="spinner"></div>
+</div>
+</body>
+</html>

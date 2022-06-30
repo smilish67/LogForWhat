@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #DFDFDF;
+}
+
+#wrapper {
+    width: 500px;
+    height: auto;
+    background-color: #FFFFFF;
+    margin: 150px auto;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+h1 {
+    margin-bottom: 50px;
+    color: blue;
+}
+
+#content {
+    padding: 20px;
+    text-align: center;
+}
+
+input {
+    width: 450px;
+    font-size: 19px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+select {
+    width: 450px;
+    font-size: 16px;
+    height: 30px;
+}
+
+input[type="button"] {
+    width: 450px;
+    background-color: skyblue;
+    height: 50px;
+    margin-top: 50px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+input[type="button"]:hover {
+    background-color: deepskyblue;
+}
+
+#other {
+    margin-top: 20px;
+    text-align: right;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + span {
+    display: inline-block;
+    padding: 10px 10px;
+    border: 1px solid #dfdfdf;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    width: 223px;
+}
+
+input[type="radio"] + span:hover {
+    background-color: lightskyblue;
+}
+
+input[type="radio"]:checked + span {
+    background-color: skyblue;
+}
+
+#age {
+    margin-top: 10px;
+}
+
+select {
+    font-size: 20px;
+    height: 46px;
+}
+
+img {
+    width: 150px;
+    margin-bottom: 50px;
+}

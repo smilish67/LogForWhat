@@ -1,0 +1,127 @@
+#surveyInProgress {
+    background-color: #DFDFDF;
+}
+
+#surveyInProgress:hover {
+    background-color: #AFAFAF;
+}
+
+#surveyNav {
+    margin-top: 30px;
+    text-align: right;
+    padding: 10px;
+}
+
+#section {
+    margin-top: 30px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.surveyComponent {
+    height: 150px;
+    border-radius: 30px;
+    padding: 10px;
+    border: 1px solid gray;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.surveyComponent:hover {
+    cursor: pointer;
+    background-color: #DFDFDF;
+}
+
+.surveyComponent .surveyTitle {
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 20px 0px;
+}
+
+
+.surveyInfo {
+    color: gray;
+    margin-top: 10px;
+}
+
+.surveyInfo .incentive span, .reward span {
+    font-weight: bold;
+    color: slateblue;
+}
+
+.maxAnswerer {
+    color: black;
+}
+
+.maxAnswerer span {
+    font-weight: bold;
+}
+
+.incentive, .reward {
+    text-align: right;
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: 58px 30px 40px;
+    justify-content: right;
+}
+
+
+
+
+
+/*팝업창*/
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* 숨기기 */
+    z-index: -1;
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+    z-index: 1000;
+    transition: all 0.5s;
+}
+
+.window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    text-align: right;
+    padding: 5px;
+    transform: translate(-50%, -40%);
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    grid-gap: 20px;
+}
+
+.show .popup {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+}
+
+#modalIframe {
+    width: 1000px;
+    height: 850px;
+    border: 0;
+}

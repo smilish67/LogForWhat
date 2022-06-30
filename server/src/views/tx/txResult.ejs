@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 설문 정보</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/tx/txResult.css">
+    <link rel="stylesheet" type="text/css" href="/css/survey/surveyFrame.css">
+    <script src="/js/tx/txResult.js" defer></script>
+    <script>
+        const web3 = solanaWeb3;
+
+        (async () => {
+            parent.showSpinner();
+            let connection = new web3.Connection(web3.clusterApiUrl('devnet'));
+            let data = await connection.getTransaction("<%=txId%>");
+            console.log(data);
+            document.querySelector('#timestamp').innerHTML = Unix_timestamp(data.blockTime);
+            document.querySelector('#fee').innerHTML = data.meta.fee /1000000000;
+            document.querySelector('#payer').innerHTML = data.transaction.message.accountKeys[0].toBase58();
+            data.meta.postTokenBalances.forEach((item, i, arr) => {
+                let log;
+                if(data.meta.preTokenBalances[i]) {
+                    log = item.uiTokenAmount.uiAmount - data.meta.preTokenBalances[i].uiTokenAmount.uiAmount;
+                } else {
+                    log = item.uiTokenAmount.uiAmount;
+                }
+
+                if(log>0) {
+                    $('#balance').append('<span>'+item.owner+'</span><span class="plus">+'+log.toFixed(3)+'<span> <span>UPZ</span><br>');
+                } else {
+                    $('#balance').append('<span>'+item.owner+'</span><span class="minus">'+log.toFixed(3)+'<span> <span>UPZ</span><br>');
+                }
+            });
+            parent.hideSpinner();
+        })();
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <h1>스마트 컨트랙트 결과</h1>
+        <div id="txResult">
+            <div class="key">
+                <p>Signature</p>
+            </div>
+            <div class="value">
+                <span onclick="window.open('https://explorer.solana.com/tx/<%=txId%>?cluster=devnet')" id="escrow">
+                    <%=txId%>
+                </span>
+            </div>
+            <div class="key">
+                <p>Result</p>
+            </div>
+            <div class="value" id="result">
+                <span style="color: green">Success</span>
+            </div>
+            <div class="key">
+                <p>Timestamp</p>
+            </div>
+            <div class="value">
+                <span id="timestamp"></span>
+            </div>
+            <div class="key">
+                <p>Fee (SOL)</p>
+            </div>
+            <div class="value">
+                <span id="fee"></span>
+            </div>
+            <div class="key">
+                <p>Payer</p>
+            </div>
+            <div class="value" >
+                <span id="payer"></span>
+            </div>
+            <div style="grid-column: span 2">
+                <p>Balance 변동</p>
+            </div>
+            <div id="balance" style="grid-column: span 2">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

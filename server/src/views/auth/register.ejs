@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 회원가입 화면</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/auth/register.css">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+    <script src="/js/loading.js" defer></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <script src="/js/auth/register.js" defer></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <form>
+            <label for="male">
+                <input type="radio" id="male" name="gender" value="male" required checked>
+                <span>남성</span>
+            </label>
+
+            <label for="female">
+                <input type="radio" id="female" name="gender" value="female">
+                <span>여성</span>
+            </label>
+            <div id="age">
+                <select id="age" name="age">
+                    <option value="" >나이대를 선택해주세요.</option>
+                    <option value="10대" >10대</option>
+                    <option value="20대" >20대</option>
+                    <option value="30대" >30대</option>
+                    <option value="40대" >40대</option>
+                    <option value="50대" >50대</option>
+                    <option value="60대 이상"> 60대 이상</option>
+                </select>
+            </div>
+            <input type="email" id="email" name="email" placeholder="이메일" required>
+            <input type="password" id="password" name="password" placeholder="비밀번호" required>
+            <input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인" required>
+            <input type="text" id="walletAddress" name="walletAddress" placeholder="솔라나 지갑 주소 (필수 아님)">
+            <input type="button" id="submit" value="회원가입">
+            <div id="other">
+                <a href="/">로그인하기</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layerPopup">
+    <div class="spinner"></div>
+</div>
+</body>
+</html>

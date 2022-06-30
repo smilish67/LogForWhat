@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#wrapper {
+    width: 940px;
+    height: auto;
+    min-height: 800px;
+    background-color: #FFFFFF;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+}
+
+#content {
+    padding: 20px;
+    text-align: center;
+}
+
+img {
+    width: 150px;
+}
+
+#survey {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+p {
+    color: #7F7F7F;
+}
+
+span{
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+#surveyTitle {
+    width: 750px;
+    font-size: 16px;
+    height: 30px;
+    padding: 5px;
+}
+
+#numOfAnswerer {
+    height: 30px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+#addInfo {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+}
+
+
+
+
+
+#surveyData {
+    margin-top: 30px;
+    min-height: 300px;
+    text-align: center;
+}
+
+#questionList {
+    margin-top: 50px;
+    text-align: left;
+}
+
+
+
+
+.subjective {
+    margin-bottom: 80px;
+    color: black;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+
+#questionAdder {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+#subjectiveAdder {
+    width: 650px;
+    display: inline-block;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 30px;
+}
+
+#subjectiveAdder table {
+    text-align: left;
+}
+
+#subjectiveAdder input {
+    width: 400px;
+    font-size: 16px;
+    height: 30px;
+    padding: 10px;
+}
+
+#subjectiveAdder input[type='number'] {
+    width: 100px;
+}
+
+
+
+
+
+#contractSection {
+    margin-top: 50px;
+    display: grid;
+    place-items: center;
+    grid-template-rows: 1fr 1fr;
+}
+
+#description {
+    margin-top: 20px;
+    width: 57%;
+    text-align: center;
+}
+
+#contractContent {
+    margin-top: 50px;
+    height: 130px;
+}
+
+#secretKey {
+    height: 30px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+#enrollSurveyBtn {
+    margin-top: 10px;
+}

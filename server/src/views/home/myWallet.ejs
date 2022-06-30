@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LogForCash - 설문조사 리워드 플랫폼 : 내 지갑</title>
+    <link rel="shortcut icon" href="/img/logo/fav.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/home/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/home/myWallet.css">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+    <script src="/js/loading.js" defer></script>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <script src="js/home/bs58.bundle.js" charset="utf-8"></script>
+    <script src="/js/home/myWallet.js" defer></script>
+    <script src="/js/home/main.js" defer></script>
+
+
+    <script>
+        const {clusterApiUrl, Connection, PublicKey} = solanaWeb3;
+
+        <%if(data['userWalletAddress']!==null && data['userWalletAddress']!=="") {%>
+            (async () => {
+                let connection = new Connection(clusterApiUrl('devnet'));
+                const upzBal = await connection.getTokenAccountBalance(new PublicKey("<%=data['userATA']%>"));
+                const solBal = await connection.getBalance(new PublicKey("<%=data['userWalletAddress']%>"));
+                const upz = document.querySelector("#upz");
+                const sol = document.querySelector("#sol");
+                upz.innerHTML = (upzBal.value.amount/(10**upzBal.value.decimals)).toFixed(3);
+                sol.innerHTML = solBal/(10**9);
+            })();
+        <%}%>
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <span onclick="logout()" style="color: red; cursor: pointer; margin: 10px">LOGOUT</span>
+    <div id="content">
+        <img src="/img/logo/logo.png">
+        <div id="nav">
+            <div class="item" id="myWallet" onclick="window.location.href='/myWallet'">
+                <span>
+                    내 지갑
+                </span>
+            </div>
+            <div class="item" id="surveyInProgress" onclick="window.location.href='/surveyInProgress'">
+                <span>
+                    진행 중인 설문
+                </span>
+            </div>
+            <div class="item" id="surveyNFTStore" onclick="window.location.href='/surveyNFTStore'">
+                <span>
+                    설문 NFT 스토어
+                </span>
+            </div>
+        </div>
+        <div id="certificate">
+            <h1>LICENSE TO LOG FOR CASH</h1>
+            <div id="cert">
+                <div id="cert-img">
+                    <img src="/img/logo/logo-white.png">
+                </div>
+                <div id="cert-content">
+                    <p>GENDER</p>
+                    <span><%=data['userGender']%></span>
+                    <p>AGE</p>
+                    <span><%=data['userAge']%></span>
+                    <%if(data['userWalletAddress']!==null && data['userWalletAddress']!=="") {%>
+                        <p>WALLET ADDRESS</p>
+                        <span id="pk"><%=data['userWalletAddress']%></span>
+
+                        <p>SOL BALANCE</p>
+                        <span id="sol"></span> SOL
+
+                        <p>UPZ BALANCE</p>
+                        <span id="upz"></span> UPZ
+                    <%} else {%>
+                        <p>WALLET ADDRESS</p>
+                        <span>현재 등록된 지갑이 없습니다.</span>
+
+                        <button id="keyGenerator" onclick="KeypairGen()">지갑생성하기</button>
+                        <div id="keyGen">
+                            시크릿키는 저장되지 않습니다. 다른 곳에 적어두셔서 은밀히 간직하시기 바랍니다.<br><br>
+                            Public key <br><span id="newPK">dump</span><br><br>
+                            Secret Key <br><span id="newSK">dump</span>
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layerPopup">
+    <div class="spinner"></div>
+</div>
+</body>
+</html>
