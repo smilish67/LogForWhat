@@ -174,7 +174,7 @@ class surveySmartContract {
         vault_authority_pda = _vault_authority_pda;
 
         try {
-            response = await program.rpc.cancel({mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmkmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm      mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm                                   a
+            response = await program.rpc.cancel({
                 accounts: {
                     initializer: wallet.publicKey,
                     initializerDepositTokenAccount: ata,
