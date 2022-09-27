@@ -4,5 +4,4 @@ server/src/config/db_secret.json
 lw-solana-wallet
 node_modules/
 survey_nft/
-lw-nft-contract/
 pinta.json
