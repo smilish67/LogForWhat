@@ -48,20 +48,6 @@ api 처리 과정을 정리하면 다음과 같습니다
 
 # DB구조 정리
 
-<hr>
-MySQL 접속방법
-
-구름컨테이너를 실행시킨 후 워크벤치 혹은 개인적으로 사용하는 툴에서 다음 설정으로 연결하면 됩니다.
-
-hostname: 52.78.36.206
-
-port: 53637
-
-Username: UPZ
-
-Password: blockjeju
-
-<hr>
 
 logforcash는 5개의 테이블이 있습니다.
 1. nft - NFT 관련 정보 테이블
